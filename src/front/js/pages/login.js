@@ -6,6 +6,7 @@ import "../../styles/home.css";
 
 export const Login = () => {
 	const { store, actions } = useContext(Context);
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const token = sessionStorage.getItem("token");
@@ -13,7 +14,7 @@ export const Login = () => {
     console.log("This is your token", store.token)
 
     const handleClick = () => {
-        actions.login(email, password);
+        actions.login(username, email, password);
     };
 
     if(store.token && store.token != "" && store.token != undefined) history.push("/");
@@ -26,7 +27,10 @@ export const Login = () => {
                 ) : (
             <>
                 <div className="row">
-                    <div className="col-12 my-3">
+                <div className="col-12 my-3">
+                        <input className="col-3" type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    </div>
+                    <div className="col-12 mb-3">
                         <input className="col-3" type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
                     </div>
                     <div className="col-12 mb-3">                   
