@@ -48,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				
 				try {
-					const resp = await fetch('https://3001-crodr86-jwtauthenticati-fbdd0lorso9.ws-eu40.gitpod.io/api/token', opts)
+					const resp = await fetch(process.env.BACKEND_URL + "/api/token", opts)
 					if(resp.status !== 200) {
 						alert("Error!");
 						return false;
@@ -73,7 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				}
 				// fetching data from the backend
-				fetch("https://3001-crodr86-jwtauthenticati-fbdd0lorso9.ws-eu40.gitpod.io/api/hello", opts)
+				fetch(process.env.BACKEND_URL + "/api/hello", opts)
 					.then(resp => resp.json())
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
