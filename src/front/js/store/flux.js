@@ -65,8 +65,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getMessage: () => {
+				const store = getStore();
+				const opts = {
+					headers: {
+						"Authorization": "Bearer " + store.token
+					}
+				}
 				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
+				fetch("https://3001-crodr86-jwtauthenticati-fbdd0lorso9.ws-eu40.gitpod.io/api/hello", opts)
 					.then(resp => resp.json())
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
