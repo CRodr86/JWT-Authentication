@@ -34,13 +34,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ token: null });
 			},
 
-			login: async (email, password) => {
+			login: async (username, email, password) => {
 				const opts = {
 					method: 'POST',
 					headers: {
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify({
+						"username": username,
 						"email": email,
 						"password": password
 					})
